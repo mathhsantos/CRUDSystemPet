@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|c:\\users\\not170\\documents\\projects\\crudsystempet\\crudsystempet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|solutionrelative:crudsystempet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|c:\\users\\not170\\documents\\projects\\crudsystempet\\crudsystempet\\entities\\petdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|solutionrelative:crudsystempet\\entities\\petdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|c:\\users\\not170\\documents\\projects\\crudsystempet\\crudsystempet\\entities\\pet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|solutionrelative:crudsystempet\\entities\\pet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|c:\\users\\not170\\documents\\projects\\crudsystempet\\crudsystempet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|solutionrelative:crudsystempet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|c:\\users\\not170\\documents\\projects\\crudsystempet\\crudsystempet\\entities\\adress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|solutionrelative:crudsystempet\\entities\\adress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|c:\\users\\not170\\documents\\projects\\crudsystempet\\crudsystempet\\entities\\enums\\epettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|solutionrelative:crudsystempet\\entities\\enums\\epettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,54 +30,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PetDataBase.cs",
-              "DocumentMoniker": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\PetDataBase.cs",
-              "RelativeDocumentMoniker": "CRUDSystemPet\\Entities\\PetDataBase.cs",
-              "ToolTip": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\PetDataBase.cs",
-              "RelativeToolTip": "CRUDSystemPet\\Entities\\PetDataBase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T04:55:05.652Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Adress.cs",
-              "DocumentMoniker": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\Adress.cs",
-              "RelativeDocumentMoniker": "CRUDSystemPet\\Entities\\Adress.cs",
-              "ToolTip": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\Adress.cs",
-              "RelativeToolTip": "CRUDSystemPet\\Entities\\Adress.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T03:49:54.493Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Pet.cs",
-              "DocumentMoniker": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\Pet.cs",
-              "RelativeDocumentMoniker": "CRUDSystemPet\\Entities\\Pet.cs",
-              "ToolTip": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\Pet.cs",
-              "RelativeToolTip": "CRUDSystemPet\\Entities\\Pet.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "Title": "EPetType.cs",
+              "DocumentMoniker": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\Enums\\EPetType.cs",
+              "RelativeDocumentMoniker": "CRUDSystemPet\\Entities\\Enums\\EPetType.cs",
+              "ToolTip": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\Enums\\EPetType.cs",
+              "RelativeToolTip": "CRUDSystemPet\\Entities\\Enums\\EPetType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T02:45:18.914Z",
+              "WhenOpened": "2025-03-11T00:38:27.088Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PetDataBase.cs",
+              "DocumentMoniker": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\PetDataBase.cs",
+              "RelativeDocumentMoniker": "CRUDSystemPet\\Entities\\PetDataBase.cs",
+              "ToolTip": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\PetDataBase.cs",
+              "RelativeToolTip": "CRUDSystemPet\\Entities\\PetDataBase.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAgwFEAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T00:15:05.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Program.cs",
               "RelativeDocumentMoniker": "CRUDSystemPet\\Program.cs",
               "ToolTip": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Program.cs",
               "RelativeToolTip": "CRUDSystemPet\\Program.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBkAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAKYAAAAAAAAAAAAmwLYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T02:40:57.588Z",
+              "WhenOpened": "2025-03-10T23:14:58.578Z",
               "EditorCaption": ""
             }
           ]

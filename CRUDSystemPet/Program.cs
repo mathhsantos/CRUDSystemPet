@@ -60,6 +60,128 @@ namespace CRUDSystemPet {
 
                         break;
 
+                    case 5:
+
+                        string[] options = new string[3];
+
+                        Console.Write("Qual o tipo de animal? (Cachorro/Gato): ");
+                        string petType = Console.ReadLine();
+                        options[0] = petType;
+
+                        Console.WriteLine();
+
+                        Console.WriteLine("1 - Nome ou Sobrenome");
+                        Console.WriteLine("2 - Sexo");
+                        Console.WriteLine("3 - Idade");
+                        Console.WriteLine("4 - Peso");
+                        Console.WriteLine("5 - Raça");
+                        Console.WriteLine("6 - Endereço");
+                        Console.WriteLine();
+
+                        Console.Write("Qual dos criterios acima deseja escolher para a busca? ");
+                        int criterio1 = int.Parse(Console.ReadLine());
+
+                        switch(criterio1) {
+                            case 1:
+                                Console.Write("Digite o nome ou sobrenome: ");
+                                string name = Console.ReadLine();
+                                options[1] = name;
+                                break;
+
+                            case 2:
+                                Console.Write("Digite o sexo (Macho/Femea): ");
+                                string sex = Console.ReadLine();
+                                options[1] = sex;
+                                break;
+
+                            case 3:
+                                Console.Write("Digite a idade: ");
+                                string age = Console.ReadLine();
+                                options[1] = age;
+                                break;
+
+                            case 4:
+                                Console.Write("Digite o peso: ");
+                                string weight = Console.ReadLine();
+                                options[1] = weight;
+                                break;
+
+                            case 5:
+                                Console.Write("Digite a Raça: ");
+                                string race = Console.ReadLine();
+                                options[1] = race;
+                                break;
+
+                            case 6:
+                                Console.Write("Digite o endereço: ");
+                                string endereco = Console.ReadLine();
+                                options[1] = endereco;
+                                break;
+
+                            default: 
+                                Console.WriteLine("Número incorreto, voltando pro menu inicial!!");
+                                Console.WriteLine();
+                                break;
+                        }   
+
+                        Console.Write("Deseja escolher mais um critério? (y/n): ");
+                        char yesOrNot = char.Parse(Console.ReadLine());
+
+                        if(yesOrNot == 'y') {
+                            Console.Write("Qual dos criterios acima deseja escolher para a busca? ");
+                            int criterio2 = int.Parse(Console.ReadLine());
+
+                            switch (criterio2) {
+                                case 1:
+                                    Console.Write("Digite o nome ou sobrenome: ");
+                                    string name = Console.ReadLine();
+                                    options[2] = name;
+                                    break;
+
+                                case 2:
+                                    Console.Write("Digite o sexo (Macho/Femea): ");
+                                    string sex = Console.ReadLine();
+                                    options[2] = sex;
+                                    break;
+
+                                case 3:
+                                    Console.Write("Digite a idade: ");
+                                    string age = Console.ReadLine();
+                                    options[2] = age;
+                                    break;
+
+                                case 4:
+                                    Console.Write("Digite o peso: ");
+                                    string weight = Console.ReadLine();
+                                    options[2] = weight;
+                                    break;
+
+                                case 5:
+                                    Console.Write("Digite a Raça: ");
+                                    string race = Console.ReadLine();
+                                    options[2] = race;
+                                    break;
+
+                                case 6:
+                                    Console.Write("Digite o endereço: ");
+                                    string endereco = Console.ReadLine();
+                                    options[2] = endereco;
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Número incorreto, voltando pro menu inicial!!");
+                                    Console.WriteLine();
+                                    break;
+                            }
+                        }
+
+                        Console.WriteLine();
+                        Console.WriteLine("Pets encontrados de acordo com criterios de busca:");
+
+                        PetDataBase.FindPet(options);
+
+                        break;
+
                     case 4:
                         Console.WriteLine();
                         Console.WriteLine("Lista de todos os Pets cadastrados: ");

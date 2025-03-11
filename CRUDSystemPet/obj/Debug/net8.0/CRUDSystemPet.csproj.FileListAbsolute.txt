@@ -1,0 +1,15 @@
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.AssemblyInfoInputs.cache
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.AssemblyInfo.cs
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.csproj.CoreCompileInputs.cache
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.sourcelink.json
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\bin\Debug\net8.0\CRUDSystemPet.exe
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\bin\Debug\net8.0\CRUDSystemPet.deps.json
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\bin\Debug\net8.0\CRUDSystemPet.runtimeconfig.json
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\bin\Debug\net8.0\CRUDSystemPet.dll
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\bin\Debug\net8.0\CRUDSystemPet.pdb
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.dll
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\refint\CRUDSystemPet.dll
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.pdb
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.genruntimeconfig.cache
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\ref\CRUDSystemPet.dll

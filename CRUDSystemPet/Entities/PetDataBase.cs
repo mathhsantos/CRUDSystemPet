@@ -18,10 +18,10 @@ namespace CRUDSystemPet.Entities {
 
             string path = @"C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\petsCadastrados\";
 
-            if(!Directory.Exists(path)) {
+            if (!Directory.Exists(path)) {
                 Directory.CreateDirectory(path);
             }
-                
+
 
             try {
                 using (StreamWriter sw = File.CreateText(path + $"{DateTime.Now.ToString("yyyyMMddTHHmm")} - {pet.Name.Trim().ToUpper().Replace(" ", "")}.txt")) {
@@ -34,7 +34,8 @@ namespace CRUDSystemPet.Entities {
                     sw.WriteLine($"7 - {pet.Race}");
                 }
 
-            } catch (IOException e ) {
+            }
+            catch (IOException e) {
                 Console.WriteLine(e.Message);
             }
         }
@@ -48,14 +49,39 @@ namespace CRUDSystemPet.Entities {
 
             int count = 1;
 
-            foreach(Pet pet in petList) {
+            foreach (Pet pet in petList) {
+
+                Console.WriteLine($"{count}. {pet.Name} - {pet.Type} - {pet.Sex} - {pet.Adress} - {pet.Age} - {pet.Weight}Kg - {pet.Race}");
+
+                count++;
+            }
+        }
+
+        public static void FindPet(string[] arr) {
+
+            List<Pet> search;
+            int count = 1;
+
+            if (!string.IsNullOrEmpty(arr[2])) {
+                search = petList.FindAll(x =>
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(arr[0].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(arr[1].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(arr[2].ToLower())
+                );
+            } else {
+                search = petList.FindAll(x =>
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(arr[0].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(arr[1].ToLower()));
+            }
+
+            foreach (Pet pet in search) {
 
                 Console.WriteLine($"{count}. {pet.Name} - {pet.Type} - {pet.Sex} - {pet.Adress} - {pet.Age} - {pet.Weight}Kg - {pet.Race}");
 
                 count++;
             }
 
-            
+            Console.WriteLine();
         }
     }
 }

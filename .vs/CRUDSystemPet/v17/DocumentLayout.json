@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|c:\\users\\not170\\documents\\projects\\crudsystempet\\crudsystempet\\entities\\petdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|solutionrelative:crudsystempet\\entities\\petdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|c:\\users\\not170\\documents\\projects\\crudsystempet\\crudsystempet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|solutionrelative:crudsystempet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|c:\\users\\not170\\documents\\projects\\crudsystempet\\crudsystempet\\entities\\enums\\epettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C96FBC1-40F1-4382-944B-718104F55CFE}|CRUDSystemPet\\CRUDSystemPet.csproj|solutionrelative:crudsystempet\\entities\\enums\\epettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,24 +22,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EPetType.cs",
+              "DocumentMoniker": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\Enums\\EPetType.cs",
+              "RelativeDocumentMoniker": "CRUDSystemPet\\Entities\\Enums\\EPetType.cs",
+              "ToolTip": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\Enums\\EPetType.cs",
+              "RelativeToolTip": "CRUDSystemPet\\Entities\\Enums\\EPetType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T00:38:27.088Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PetDataBase.cs",
+              "DocumentMoniker": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\PetDataBase.cs",
+              "RelativeDocumentMoniker": "CRUDSystemPet\\Entities\\PetDataBase.cs",
+              "ToolTip": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Entities\\PetDataBase.cs*",
+              "RelativeToolTip": "CRUDSystemPet\\Entities\\PetDataBase.cs*",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAmwFUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T00:15:05.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Program.cs",
               "RelativeDocumentMoniker": "CRUDSystemPet\\Program.cs",
               "ToolTip": "C:\\Users\\NOT170\\Documents\\projects\\CRUDSystemPet\\CRUDSystemPet\\Program.cs",
               "RelativeToolTip": "CRUDSystemPet\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABwAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAKYAAAAAAAAAAAAmwLYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T05:45:41.751Z",
+              "WhenOpened": "2025-03-10T23:14:58.578Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             }
           ]
         },
