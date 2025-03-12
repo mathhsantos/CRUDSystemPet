@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 namespace CRUDSystemPet.Entities {
 
     class Pet {
-
-        string padrao = "NÃO INFORMADO";
         public string? Name { get; private set; }
         public EPetType Type { get; private set; }
         public EPetSex Sex { get; private set; }
@@ -29,14 +27,16 @@ namespace CRUDSystemPet.Entities {
             Race = race;
         }
 
-        public void AlterPet(string? name, EPetType type, EPetSex sex, string? adress, int age, double weight, string? race) {
+        public void AlterPet(string? name, string? adress, int age, double weight, string? race) {
             Name = name;
-            Type = type;
-            Sex = sex;
             Adress = adress;
             Age = age;
             Weight = weight;
             Race = race;
+
+            Console.WriteLine();
+            Console.WriteLine("Dados do atualizados com sucesso!");
+            Console.WriteLine();
         }
     }
 }

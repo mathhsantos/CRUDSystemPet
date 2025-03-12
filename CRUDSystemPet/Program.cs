@@ -2,7 +2,9 @@
 using CRUDSystemPet.Entities.Enums;
 using System.Globalization;
 using System.IO;
+using System.Threading.Channels;
 using System.Xml;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CRUDSystemPet {
     internal class Program {
@@ -26,19 +28,27 @@ namespace CRUDSystemPet {
                 Console.WriteLine();
 
                 switch (option) {
+
                     case 1:
+                        string[] responses = new string[7];
 
-                        using (StreamReader sr = File.OpenText(pathForm)) {
+                        try {
+                            using (StreamReader sr = File.OpenText(pathForm)) {
 
-                            int cont = 0;
-                            string[] responses = new string[7];
-                            Adress adress = null;
+                                int cont = 0;
 
-                            while (!sr.EndOfStream) { 
-                                Console.Write(sr.ReadLine() + " ");
-                                responses[cont] = Console.ReadLine();
-                                cont++;
+                                Adress adress = null;
+
+                                while (!sr.EndOfStream) {
+                                    Console.Write(sr.ReadLine() + " ");
+                                    responses[cont] = Console.ReadLine();
+                                    cont++;
+                                }
                             }
+
+                        } catch(IOException e ) {
+                            Console.WriteLine(e.Message);
+                        }
 
                             PetDataBase.AddPet(
                                 new Pet(
@@ -51,8 +61,7 @@ namespace CRUDSystemPet {
                                     responses[6]
                                 )
                             );
-                        }
-
+                        
                         Console.WriteLine();
                         Console.WriteLine("PET cadastrado com sucesso!!!");
                         Console.WriteLine();
@@ -60,129 +69,97 @@ namespace CRUDSystemPet {
 
                         break;
 
-                    case 5:
+                    case 2: 
+                        
+                        List<Pet> filteredList = PetDataBase.FindPet();
 
-                        string[] options = new string[3];
+                        if(filteredList == null) {
+                            break;
+                        }
 
-                        Console.Write("Qual o tipo de animal? (Cachorro/Gato): ");
-                        string petType = Console.ReadLine();
-                        options[0] = petType;
+                        if(filteredList.Count == 0) {
+                            Console.WriteLine();
+                            Console.WriteLine("Nenhum Pet foi encontrado com essa pesquisa!");
+                            Console.WriteLine();
+                            break;
+                        }
 
+                        Console.WriteLine("Qual dos PETs acima gostaria de alterar? ");
+                        int indexSelectedPet = int.Parse(Console.ReadLine());
+
+                        Pet selectedPet = filteredList[indexSelectedPet - 1];
+
+                        Console.WriteLine($"Alterando dados de ({selectedPet.Name}):");
                         Console.WriteLine();
 
-                        Console.WriteLine("1 - Nome ou Sobrenome");
-                        Console.WriteLine("2 - Sexo");
-                        Console.WriteLine("3 - Idade");
-                        Console.WriteLine("4 - Peso");
-                        Console.WriteLine("5 - Raça");
-                        Console.WriteLine("6 - Endereço");
-                        Console.WriteLine();
+                        string[] responses2 = new string[5];
 
-                        Console.Write("Qual dos criterios acima deseja escolher para a busca? ");
-                        int criterio1 = int.Parse(Console.ReadLine());
+                        try {
+                            using (StreamReader sr = File.OpenText(pathForm)) {
 
-                        switch(criterio1) {
-                            case 1:
-                                Console.Write("Digite o nome ou sobrenome: ");
-                                string name = Console.ReadLine();
-                                options[1] = name;
-                                break;
+                                int cont = 0;
 
-                            case 2:
-                                Console.Write("Digite o sexo (Macho/Femea): ");
-                                string sex = Console.ReadLine();
-                                options[1] = sex;
-                                break;
+                                while (!sr.EndOfStream) {
+                                    string? question = sr.ReadLine();
 
-                            case 3:
-                                Console.Write("Digite a idade: ");
-                                string age = Console.ReadLine();
-                                options[1] = age;
-                                break;
-
-                            case 4:
-                                Console.Write("Digite o peso: ");
-                                string weight = Console.ReadLine();
-                                options[1] = weight;
-                                break;
-
-                            case 5:
-                                Console.Write("Digite a Raça: ");
-                                string race = Console.ReadLine();
-                                options[1] = race;
-                                break;
-
-                            case 6:
-                                Console.Write("Digite o endereço: ");
-                                string endereco = Console.ReadLine();
-                                options[1] = endereco;
-                                break;
-
-                            default: 
-                                Console.WriteLine("Número incorreto, voltando pro menu inicial!!");
-                                Console.WriteLine();
-                                break;
-                        }   
-
-                        Console.Write("Deseja escolher mais um critério? (y/n): ");
-                        char yesOrNot = char.Parse(Console.ReadLine());
-
-                        if(yesOrNot == 'y') {
-                            Console.Write("Qual dos criterios acima deseja escolher para a busca? ");
-                            int criterio2 = int.Parse(Console.ReadLine());
-
-                            switch (criterio2) {
-                                case 1:
-                                    Console.Write("Digite o nome ou sobrenome: ");
-                                    string name = Console.ReadLine();
-                                    options[2] = name;
-                                    break;
-
-                                case 2:
-                                    Console.Write("Digite o sexo (Macho/Femea): ");
-                                    string sex = Console.ReadLine();
-                                    options[2] = sex;
-                                    break;
-
-                                case 3:
-                                    Console.Write("Digite a idade: ");
-                                    string age = Console.ReadLine();
-                                    options[2] = age;
-                                    break;
-
-                                case 4:
-                                    Console.Write("Digite o peso: ");
-                                    string weight = Console.ReadLine();
-                                    options[2] = weight;
-                                    break;
-
-                                case 5:
-                                    Console.Write("Digite a Raça: ");
-                                    string race = Console.ReadLine();
-                                    options[2] = race;
-                                    break;
-
-                                case 6:
-                                    Console.Write("Digite o endereço: ");
-                                    string endereco = Console.ReadLine();
-                                    options[2] = endereco;
-                                    break;
-
-                                default:
-                                    Console.WriteLine("Número incorreto, voltando pro menu inicial!!");
-                                    Console.WriteLine();
-                                    break;
+                                    if(!question.Contains("2 -") && !question.Contains("3 -")) {
+                                        Console.Write(question.Substring(4) + " ");
+                                        responses2[cont] = Console.ReadLine();
+                                        cont++;
+                                    }    
+                                }
                             }
+
+                        } catch(IOException e) {
+                            Console.WriteLine(e.Message);
+                        }
+
+                        PetDataBase.UpdatePet(selectedPet, responses2);
+                        Console.WriteLine();
+                        Console.WriteLine("Segue lista atualizada: ");
+
+                        PetDataBase.ListPets();
+
+                        break;
+
+                    case 3:
+
+                        List<Pet> filteredListForDelete = PetDataBase.FindPet();
+
+                        if (filteredListForDelete == null) {
+                            break;
+                        }
+
+                        if (filteredListForDelete.Count == 0) {
+                            Console.WriteLine();
+                            Console.WriteLine("Nenhum Pet foi encontrado com essa pesquisa!");
+                            Console.WriteLine();
+                            break;
                         }
 
                         Console.WriteLine();
-                        Console.WriteLine("Pets encontrados de acordo com criterios de busca:");
+                        Console.Write("Qual dos PETs acima gostaria de Excluir? ");
+                        int indexSelectedPetForDelete = int.Parse(Console.ReadLine());
 
-                        PetDataBase.FindPet(options);
+                        Pet selectedPetForDelete = filteredListForDelete[indexSelectedPetForDelete - 1];
+
+                        Console.WriteLine();
+                        Console.Write($"Tem certeza que quer excluir {selectedPetForDelete.Name}? (SIM/NAO): ");
+                        string yesOrNot = Console.ReadLine();
+
+                        if(yesOrNot == "SIM") {
+                            PetDataBase.RemovePet(selectedPetForDelete); 
+                            
+                            break;
+                        }
+
+                        Console.WriteLine("Operação de exclusão cancelada!!");
+                        Console.WriteLine();
 
                         break;
 
                     case 4:
+
                         Console.WriteLine();
                         Console.WriteLine("Lista de todos os Pets cadastrados: ");
                         PetDataBase.ListPets();
@@ -190,6 +167,8 @@ namespace CRUDSystemPet {
                         Console.WriteLine();
 
                         break;
+
+                    case 5: PetDataBase.FindPet(); break;
                 }
 
             }

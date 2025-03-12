@@ -13,7 +13,7 @@ namespace CRUDSystemPet.Entities {
         static private List<Pet> petList = new List<Pet>();
 
 
-        static public void AddPet(Pet pet) {
+        public static void AddPet(Pet pet) {
             petList.Add(pet);
 
             string path = @"C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\petsCadastrados\";
@@ -40,14 +40,14 @@ namespace CRUDSystemPet.Entities {
             }
         }
 
-        static public void RemovePet(Pet pet) {
-            petList.Remove(pet);
-
-        }
-
-        static public void ListPets() {
+        public static void ListPets() {
 
             int count = 1;
+
+            if(petList.Count == 0) {
+                Console.WriteLine("Lista de Pets vazia, cadastre pelo menos um pet para listar");
+                return;
+            }
 
             foreach (Pet pet in petList) {
 
@@ -55,24 +55,172 @@ namespace CRUDSystemPet.Entities {
 
                 count++;
             }
+
+            Console.WriteLine();
         }
 
-        public static void FindPet(string[] arr) {
+        public static void UpdatePet(Pet pet, string[] arr) {
+
+            Pet petFound = petList.Find(x => x == pet);
+
+            if(!(petFound == null)) {
+                petFound.AlterPet(arr[0], arr[1], int.Parse(arr[2]), double.Parse(arr[3]), arr[4]);
+
+            } else {
+                Console.WriteLine("Pet não encontrado!");
+                Console.WriteLine();
+            }
+
+        }
+
+        public static void RemovePet(Pet pet) {
+            petList.Remove(pet);
+            Console.WriteLine();
+            Console.WriteLine("Pet removido com sucesso!");
+            Console.WriteLine();
+
+        }
+
+        public static List<Pet> FindPet() {
+
+            List<Pet> gambetaMonstra = null;
+
+            if (petList.Count == 0) {
+                Console.WriteLine("Cadastre pelo menos um Pet!!");
+                Console.WriteLine();
+                return gambetaMonstra;
+            }
+
+            string[] options = new string[3];
+
+            Console.Write("Qual o tipo de animal? (Cachorro/Gato): ");
+            string petType = Console.ReadLine();
+            options[0] = petType;
+
+            Console.WriteLine();
+
+            Console.WriteLine("1 - Nome ou Sobrenome");
+            Console.WriteLine("2 - Sexo");
+            Console.WriteLine("3 - Idade");
+            Console.WriteLine("4 - Peso");
+            Console.WriteLine("5 - Raça");
+            Console.WriteLine("6 - Endereço");
+            Console.WriteLine();
+
+            Console.Write("Qual dos criterios acima deseja escolher para a busca? ");
+            int criterio1 = int.Parse(Console.ReadLine());
+
+            switch (criterio1) {
+                case 1:
+                    Console.Write("Digite o nome ou sobrenome: ");
+                    string name = Console.ReadLine();
+                    options[1] = name;
+                    break;
+
+                case 2:
+                    Console.Write("Digite o sexo (Macho/Femea): ");
+                    string sex = Console.ReadLine();
+                    options[1] = sex;
+                    break;
+
+                case 3:
+                    Console.Write("Digite a idade: ");
+                    string age = Console.ReadLine();
+                    options[1] = age;
+                    break;
+
+                case 4:
+                    Console.Write("Digite o peso: ");
+                    string weight = Console.ReadLine();
+                    options[1] = weight;
+                    break;
+
+                case 5:
+                    Console.Write("Digite a Raça: ");
+                    string race = Console.ReadLine();
+                    options[1] = race;
+                    break;
+
+                case 6:
+                    Console.Write("Digite o endereço: ");
+                    string endereco = Console.ReadLine();
+                    options[1] = endereco;
+                    break;
+
+                default:
+                    Console.WriteLine("Número incorreto, voltando pro menu inicial!!");
+                    Console.WriteLine();
+                    break;
+            }
+
+            Console.Write("Deseja escolher mais um critério? (y/n): ");
+            char yesOrNot = char.Parse(Console.ReadLine());
+
+            if (yesOrNot == 'y') {
+                Console.Write("Qual dos criterios acima deseja escolher para a busca? ");
+                int criterio2 = int.Parse(Console.ReadLine());
+
+                switch (criterio2) {
+                    case 1:
+                        Console.Write("Digite o nome ou sobrenome: ");
+                        string name = Console.ReadLine();
+                        options[2] = name;
+                        break;
+
+                    case 2:
+                        Console.Write("Digite o sexo (Macho/Femea): ");
+                        string sex = Console.ReadLine();
+                        options[2] = sex;
+                        break;
+
+                    case 3:
+                        Console.Write("Digite a idade: ");
+                        string age = Console.ReadLine();
+                        options[2] = age;
+                        break;
+
+                    case 4:
+                        Console.Write("Digite o peso: ");
+                        string weight = Console.ReadLine();
+                        options[2] = weight;
+                        break;
+
+                    case 5:
+                        Console.Write("Digite a Raça: ");
+                        string race = Console.ReadLine();
+                        options[2] = race;
+                        break;
+
+                    case 6:
+                        Console.Write("Digite o endereço: ");
+                        string endereco = Console.ReadLine();
+                        options[2] = endereco;
+                        break;
+
+                    default:
+                        Console.WriteLine("Número incorreto, voltando pro menu inicial!!");
+                        Console.WriteLine();
+                        break;
+                }
+            }
 
             List<Pet> search;
             int count = 1;
 
-            if (!string.IsNullOrEmpty(arr[2])) {
+            if (!string.IsNullOrEmpty(options[2])) {
                 search = petList.FindAll(x =>
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(arr[0].ToLower()) &&
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(arr[1].ToLower()) &&
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(arr[2].ToLower())
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[0].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[1].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[2].ToLower())
                 );
             } else {
                 search = petList.FindAll(x =>
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(arr[0].ToLower()) &&
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(arr[1].ToLower()));
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[0].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[1].ToLower()));
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Pets encontrados de acordo com criterios de busca:");
 
             foreach (Pet pet in search) {
 
@@ -82,6 +230,8 @@ namespace CRUDSystemPet.Entities {
             }
 
             Console.WriteLine();
+
+            return search;
         }
     }
 }
