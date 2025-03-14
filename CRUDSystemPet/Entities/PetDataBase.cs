@@ -28,7 +28,7 @@ namespace CRUDSystemPet.Entities {
                     sw.WriteLine($"1 - {pet.Name}");
                     sw.WriteLine($"2 - {pet.Type}");
                     sw.WriteLine($"3 - {pet.Sex}");
-                    sw.WriteLine($"4 - {pet.Adress}");
+                    sw.WriteLine($"4 - {pet.Adress.Street}, {pet.Adress.HouseNumber} - {pet.Adress.City}");
                     sw.WriteLine($"5 - {pet.Age}"); ;
                     sw.WriteLine($"6 - {pet.Weight.ToString("F2", CultureInfo.InvariantCulture)}Kg");
                     sw.WriteLine($"7 - {pet.Race}");
@@ -51,7 +51,7 @@ namespace CRUDSystemPet.Entities {
 
             foreach (Pet pet in petList) {
 
-                Console.WriteLine($"{count}. {pet.Name} - {pet.Type} - {pet.Sex} - {pet.Adress} - {pet.Age} - {pet.Weight}Kg - {pet.Race}");
+                Console.WriteLine($"{count}. {pet.Name} - {pet.Type} - {pet.Sex} - ({pet.Adress.Street}, {pet.Adress.HouseNumber} - {pet.Adress.City}) - {pet.Age} - {pet.Weight}Kg - {pet.Race}");
 
                 count++;
             }
@@ -59,12 +59,12 @@ namespace CRUDSystemPet.Entities {
             Console.WriteLine();
         }
 
-        public static void UpdatePet(Pet pet, string[] arr) {
+        public static void UpdatePet(Pet pet, string[] arr, Adress adressUpdate) {
 
             Pet petFound = petList.Find(x => x == pet);
 
             if(!(petFound == null)) {
-                petFound.AlterPet(arr[0], arr[1], int.Parse(arr[2]), double.Parse(arr[3]), arr[4]);
+                petFound.AlterPet(arr[0], adressUpdate, int.Parse(arr[1]), double.Parse(arr[2]), arr[3]);
 
             } else {
                 Console.WriteLine("Pet não encontrado!");
@@ -209,14 +209,14 @@ namespace CRUDSystemPet.Entities {
 
             if (!string.IsNullOrEmpty(options[2])) {
                 search = petList.FindAll(x =>
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[0].ToLower()) &&
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[1].ToLower()) &&
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[2].ToLower())
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress.Street}{x.Adress.HouseNumber}{x.Adress.City}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[0].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress.Street}{x.Adress.HouseNumber}{x.Adress.City}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[1].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress.Street}{x.Adress.HouseNumber}{x.Adress.City}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[2].ToLower())
                 );
             } else {
                 search = petList.FindAll(x =>
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[0].ToLower()) &&
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[1].ToLower()));
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress.Street}{x.Adress.HouseNumber}{x.Adress.City}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[0].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress.Street}{x.Adress.HouseNumber}{x.Adress.City}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[1].ToLower()));
             }
 
             Console.WriteLine();
@@ -224,7 +224,7 @@ namespace CRUDSystemPet.Entities {
 
             foreach (Pet pet in search) {
 
-                Console.WriteLine($"{count}. {pet.Name} - {pet.Type} - {pet.Sex} - {pet.Adress} - {pet.Age} - {pet.Weight}Kg - {pet.Race}");
+                Console.WriteLine($"{count}. {pet.Name} - {pet.Type} - {pet.Sex} - ({pet.Adress.Street}, {pet.Adress.HouseNumber} - {pet.Adress.City}) - {pet.Age} - {pet.Weight}Kg - {pet.Race}");
 
                 count++;
             }

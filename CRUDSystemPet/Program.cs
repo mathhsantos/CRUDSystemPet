@@ -1,7 +1,10 @@
 ﻿using CRUDSystemPet.Entities;
 using CRUDSystemPet.Entities.Enums;
+using System.Collections.Concurrent;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading.Channels;
 using System.Xml;
 using static System.Net.Mime.MediaTypeNames;
@@ -23,45 +26,82 @@ namespace CRUDSystemPet {
                 Console.WriteLine("6. Sair");
 
                 Console.WriteLine();
+
                 Console.Write("Escolha uma opção: ");
-                option = int.Parse(Console.ReadLine());
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int tempOption)) {
+                    option = tempOption;
+
+                }
+                else {
+                    Console.WriteLine("Apenas números são aceitos");
+                    continue;
+                }
+
                 Console.WriteLine();
+
+                if (option <= 0) {
+                    Console.WriteLine("Digite um número maior que 0");
+                    Console.WriteLine();
+                    continue;
+                }
 
                 switch (option) {
 
                     case 1:
-                        string[] responses = new string[7];
+
+                        string[] responses = new string[6];
+                        Adress adress = null;
 
                         try {
                             using (StreamReader sr = File.OpenText(pathForm)) {
 
                                 int cont = 0;
 
-                                Adress adress = null;
-
                                 while (!sr.EndOfStream) {
-                                    Console.Write(sr.ReadLine() + " ");
+                                    string question = sr.ReadLine() + " ";
+
+
+                                    Console.Write(question + "");
+
+                                    if (question[0] == '4') {
+                                        Console.WriteLine();
+                                        Console.Write("Digite o numero da casa: ");
+                                        int houseNumber = int.Parse(Console.ReadLine());
+
+                                        Console.Write("Digite o nome da cidade: ");
+                                        string city = Console.ReadLine();
+
+                                        Console.Write("Digite o nome da rua: ");
+                                        string street = Console.ReadLine();
+
+                                        adress = new Adress(houseNumber, city, street);
+                                        continue;
+                                    }
+
+                                    
                                     responses[cont] = Console.ReadLine();
                                     cont++;
                                 }
                             }
 
-                        } catch(IOException e ) {
+                        } catch (IOException e) {
                             Console.WriteLine(e.Message);
                         }
 
-                            PetDataBase.AddPet(
-                                new Pet(
-                                    responses[0],
-                                    Enum.Parse<EPetType>(responses[1]),
-                                    Enum.Parse<EPetSex>(responses[2]),
-                                    responses[3],
-                                    int.Parse(responses[4]),
-                                    double.Parse(responses[5]),
-                                    responses[6]
-                                )
-                            );
-                        
+                        PetDataBase.AddPet(
+                            new Pet(
+                                responses[0],
+                                Enum.Parse<EPetType>(responses[1]),
+                                Enum.Parse<EPetSex>(responses[2]),
+                                adress,
+                                int.Parse(responses[3]),
+                                double.Parse(responses[4]),
+                                responses[5]
+                            )
+                        );
+
                         Console.WriteLine();
                         Console.WriteLine("PET cadastrado com sucesso!!!");
                         Console.WriteLine();
@@ -69,15 +109,16 @@ namespace CRUDSystemPet {
 
                         break;
 
-                    case 2: 
-                        
-                        List<Pet> filteredList = PetDataBase.FindPet();
+                    case 2:
 
-                        if(filteredList == null) {
+                        List<Pet> filteredList = PetDataBase.FindPet();
+                        Adress adressUpdate = null;
+
+                        if (filteredList == null) {
                             break;
                         }
 
-                        if(filteredList.Count == 0) {
+                        if (filteredList.Count == 0) {
                             Console.WriteLine();
                             Console.WriteLine("Nenhum Pet foi encontrado com essa pesquisa!");
                             Console.WriteLine();
@@ -92,7 +133,7 @@ namespace CRUDSystemPet {
                         Console.WriteLine($"Alterando dados de ({selectedPet.Name}):");
                         Console.WriteLine();
 
-                        string[] responses2 = new string[5];
+                        string[] responses2 = new string[4];
 
                         try {
                             using (StreamReader sr = File.OpenText(pathForm)) {
@@ -102,11 +143,25 @@ namespace CRUDSystemPet {
                                 while (!sr.EndOfStream) {
                                     string? question = sr.ReadLine();
 
-                                    if(!question.Contains("2 -") && !question.Contains("3 -")) {
+                                    if (question[0] == '4') {
+                                        Console.Write("Digite o numero da casa: ");
+                                        int houseNumber = int.Parse(Console.ReadLine());
+
+                                        Console.Write("Digite o nome da cidade: ");
+                                        string city = Console.ReadLine();
+
+                                        Console.Write("Digite o nome da rua: ");
+                                        string street = Console.ReadLine();
+
+                                        adressUpdate = new Adress(houseNumber, city, street);
+                                        continue;
+                                    }
+
+                                    if (!question.Contains("2 -") && !question.Contains("3 -")) {
                                         Console.Write(question.Substring(4) + " ");
                                         responses2[cont] = Console.ReadLine();
                                         cont++;
-                                    }    
+                                    }
                                 }
                             }
 
@@ -114,7 +169,7 @@ namespace CRUDSystemPet {
                             Console.WriteLine(e.Message);
                         }
 
-                        PetDataBase.UpdatePet(selectedPet, responses2);
+                        PetDataBase.UpdatePet(selectedPet, responses2, adressUpdate);
                         Console.WriteLine();
                         Console.WriteLine("Segue lista atualizada: ");
 
@@ -147,9 +202,9 @@ namespace CRUDSystemPet {
                         Console.Write($"Tem certeza que quer excluir {selectedPetForDelete.Name}? (SIM/NAO): ");
                         string yesOrNot = Console.ReadLine();
 
-                        if(yesOrNot == "SIM") {
-                            PetDataBase.RemovePet(selectedPetForDelete); 
-                            
+                        if (yesOrNot == "SIM") {
+                            PetDataBase.RemovePet(selectedPetForDelete);
+
                             break;
                         }
 
@@ -169,6 +224,8 @@ namespace CRUDSystemPet {
                         break;
 
                     case 5: PetDataBase.FindPet(); break;
+
+                    default: Console.WriteLine("Numero invalido, digite um número de 1 a 6 conforme menu: "); break;
                 }
 
             }
