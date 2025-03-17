@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUDSystemPet.Entities.Enums {
+namespace CRUDSystemPet.Models.Enums {
     enum EPetSex {
         Macho = 1,
         Femea,

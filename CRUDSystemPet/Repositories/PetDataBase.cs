@@ -1,20 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CRUDSystemPet.Models;
+using MySqlConnector;
+using Dapper;
+using System.Data;
 using System.Globalization;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-namespace CRUDSystemPet.Entities {
-    static class PetDataBase {
-        static private List<Pet> petList = new List<Pet>();
+using CRUDSystemPet.Models.Enums;
 
 
-        public static void AddPet(Pet pet) {
-            petList.Add(pet);
+
+namespace CRUDSystemPet.Repositories {
+    class PetDataBase {
+
+        private IDbConnection _connection;
+
+        public PetDataBase(IDbConnection connection) {
+            _connection = connection;
+        }
+
+
+        public void AddPet(Pet pet) {
+
+            string sqlCommand = $"INSERT INTO Pet " +
+                                    $"(Name, Type, Sex, Adress, Age, Weight, Race, CreatedAT) " +
+                                $"VALUES" +
+                                    $"(@Name, " +
+                                    $"@Type, " +
+                                    $"@Sex, " +
+                                    $"@Adress, " +
+                                    $"@Age, " +
+                                    $"@Weight, " +
+                                    $"@Race," +
+                                    $"@CreatedAt);";
+
+            _connection.Execute(sqlCommand, new {
+                pet.Name,
+                pet.Type,
+                pet.Sex,
+                pet.Adress,
+                pet.Age,
+                Weight = pet.Weight.ToString("F2", CultureInfo.InvariantCulture),
+                pet.Race,
+                CreatedAt = pet.CretedAt.ToString("yyyy-MM-dd HH:mm:ss")
+            });
 
             string path = @"C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\petsCadastrados\";
 
@@ -27,8 +53,8 @@ namespace CRUDSystemPet.Entities {
                 using (StreamWriter sw = File.CreateText(path + $"{DateTime.Now.ToString("yyyyMMddTHHmm")} - {pet.Name.Trim().ToUpper().Replace(" ", "")}.txt")) {
                     sw.WriteLine($"1 - {pet.Name}");
                     sw.WriteLine($"2 - {pet.Type}");
-                    sw.WriteLine($"3 - {pet.Sex}");
-                    sw.WriteLine($"4 - {pet.Adress.Street}, {pet.Adress.HouseNumber} - {pet.Adress.City}");
+                    sw.WriteLine($"3 - {pet.Sex.ToString()}");
+                    sw.WriteLine($"4 - {pet.Adress}");
                     sw.WriteLine($"5 - {pet.Age}"); ;
                     sw.WriteLine($"6 - {pet.Weight.ToString("F2", CultureInfo.InvariantCulture)}Kg");
                     sw.WriteLine($"7 - {pet.Race}");
@@ -40,50 +66,39 @@ namespace CRUDSystemPet.Entities {
             }
         }
 
-        public static void ListPets() {
+        public void ListPets() {
 
-            int count = 1;
+            string sqlCommand = $"SELECT * FROM Pet ORDER BY Id;";
 
-            if(petList.Count == 0) {
-                Console.WriteLine("Lista de Pets vazia, cadastre pelo menos um pet para listar");
-                return;
-            }
+            var listPets = _connection.Query<Pet>(sqlCommand);
 
-            foreach (Pet pet in petList) {
+            foreach (Pet pet in listPets) {
 
-                Console.WriteLine($"{count}. {pet.Name} - {pet.Type} - {pet.Sex} - ({pet.Adress.Street}, {pet.Adress.HouseNumber} - {pet.Adress.City}) - {pet.Age} - {pet.Weight}Kg - {pet.Race}");
-
-                count++;
+                Console.WriteLine($"{pet.Id}. {pet.Name} - {pet.Type} - {pet.Sex} - ({pet.Adress}) - {pet.Age} anos - {pet.Weight.ToString("F2", CultureInfo.InvariantCulture)}Kg - {pet.Race}");
             }
 
             Console.WriteLine();
         }
 
-        public static void UpdatePet(Pet pet, string[] arr, Adress adressUpdate) {
+        public Pet FindOnePet(int idPet) {
 
-            Pet petFound = petList.Find(x => x == pet);
+            string sqlCommand = $"SELECT * FROM Pet WHERE Id = @Id;";
 
-            if(!(petFound == null)) {
-                petFound.AlterPet(arr[0], adressUpdate, int.Parse(arr[1]), double.Parse(arr[2]), arr[3]);
+            Pet? petFound = _connection.QueryFirstOrDefault<Pet>(sqlCommand, new { Id = idPet });
 
-            } else {
+            if (petFound == null) {
                 Console.WriteLine("Pet não encontrado!");
-                Console.WriteLine();
+                return null;
             }
 
+            return petFound;
         }
 
-        public static void RemovePet(Pet pet) {
-            petList.Remove(pet);
-            Console.WriteLine();
-            Console.WriteLine("Pet removido com sucesso!");
-            Console.WriteLine();
-
-        }
-
-        public static List<Pet> FindPet() {
+        public List<Pet> FindPets() {
 
             List<Pet> gambetaMonstra = null;
+
+            List<Pet> petList = _connection.Query<Pet>("SELECT * FROM Pet;").ToList();
 
             if (petList.Count == 0) {
                 Console.WriteLine("Cadastre pelo menos um Pet!!");
@@ -209,14 +224,15 @@ namespace CRUDSystemPet.Entities {
 
             if (!string.IsNullOrEmpty(options[2])) {
                 search = petList.FindAll(x =>
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress.Street}{x.Adress.HouseNumber}{x.Adress.City}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[0].ToLower()) &&
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress.Street}{x.Adress.HouseNumber}{x.Adress.City}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[1].ToLower()) &&
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress.Street}{x.Adress.HouseNumber}{x.Adress.City}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[2].ToLower())
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight.ToString("F2", CultureInfo.InvariantCulture)}{x.Race}".ToLower().Contains(options[0].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight.ToString("F2", CultureInfo.InvariantCulture)}{x.Race}".ToLower().Contains(options[1].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight.ToString("F2", CultureInfo.InvariantCulture)}{x.Race}".ToLower().Contains(options[2].ToLower())
                 );
-            } else {
+            }
+            else {
                 search = petList.FindAll(x =>
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress.Street}{x.Adress.HouseNumber}{x.Adress.City}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[0].ToLower()) &&
-                    $"{x.Name}{x.Type}{x.Sex}{x.Adress.Street}{x.Adress.HouseNumber}{x.Adress.City}{x.Age}{x.Weight}{x.Race}".ToLower().Contains(options[1].ToLower()));
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight.ToString("F2", CultureInfo.InvariantCulture)}{x.Race}".ToLower().Contains(options[0].ToLower()) &&
+                    $"{x.Name}{x.Type}{x.Sex}{x.Adress}{x.Age}{x.Weight.ToString("F2", CultureInfo.InvariantCulture)}{x.Race}".ToLower().Contains(options[1].ToLower()));
             }
 
             Console.WriteLine();
@@ -224,14 +240,34 @@ namespace CRUDSystemPet.Entities {
 
             foreach (Pet pet in search) {
 
-                Console.WriteLine($"{count}. {pet.Name} - {pet.Type} - {pet.Sex} - ({pet.Adress.Street}, {pet.Adress.HouseNumber} - {pet.Adress.City}) - {pet.Age} - {pet.Weight}Kg - {pet.Race}");
-
-                count++;
+                Console.WriteLine($"{pet.Id}. {pet.Name} - {pet.Type} - {pet.Sex} - ({pet.Adress}) - {pet.Age} anos - {pet.Weight.ToString("F2", CultureInfo.InvariantCulture)}Kg - {pet.Race}");
             }
 
             Console.WriteLine();
 
             return search;
+        }
+
+        public void UpdatePet(Pet pet) {
+
+            string sqlCommand = "UPDATE Pet SET Name = @Name, Adress = @Adress, Age = @Age, Weight = @Weight, Race = @Race WHERE Id = @Id;";
+
+            _connection.Execute(sqlCommand, new {
+                pet.Id,
+                pet.Name,
+                pet.Adress,
+                pet.Age,
+                pet.Weight,
+                pet.Race
+            });
+        }
+
+        public void RemovePet(int petiD) {
+
+            string sqlCommand = "DELETE FROM pet WHERE id = @iD;";
+
+            _connection.Execute(sqlCommand, new { Id = petiD });
+
         }
     }
 }

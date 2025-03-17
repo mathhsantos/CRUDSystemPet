@@ -13,3 +13,9 @@ C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\
 C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.pdb
 C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.genruntimeconfig.cache
 C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\ref\CRUDSystemPet.dll
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\bin\Debug\net8.0\Dapper.dll
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\bin\Debug\net8.0\MySqlConnector.dll
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSystemPet.csproj.AssemblyReference.cache
+C:\Users\NOT170\Documents\projects\CRUDSystemPet\CRUDSystemPet\obj\Debug\net8.0\CRUDSyst.C296E2DE.Up2Date

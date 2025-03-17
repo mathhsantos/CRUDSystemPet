@@ -1,4 +1,4 @@
-﻿using CRUDSystemPet.Entities.Enums;
+﻿using CRUDSystemPet.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -6,18 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUDSystemPet.Entities {
+namespace CRUDSystemPet.Models {
 
     class Pet {
+        public int Id { get; private set; }
         public string? Name { get; private set; }
         public EPetType Type { get; private set; }
         public EPetSex Sex { get; private set; }
-        public Adress Adress { get; private set; }
+        public string Adress { get; private set; }
         public int  Age { get; private set; }
         public double Weight { get; private set; }
         public string? Race { get; private set; }
+        public DateTime CretedAt { get; private set; }
 
-        public Pet(string? name, EPetType type, EPetSex sex, Adress? adress, int age, double weight, string? race) {
+        public Pet() { }
+
+        public Pet(string name, EPetType type, EPetSex sex, string adress, int age, double weight, string race) {
             Name = name;
             Type = type;
             Sex = sex;
@@ -25,9 +29,10 @@ namespace CRUDSystemPet.Entities {
             Age = age;
             Weight = weight;
             Race = race;
+            CretedAt = DateTime.Now;
         }
 
-        public void AlterPet(string? name, Adress? adress, int age, double weight, string? race) {
+        public void AlterPet(string name, string adress, int age, double weight, string race) {
             Name = name;
             Adress = adress;
             Age = age;
